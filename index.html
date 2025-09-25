@@ -83,6 +83,32 @@
             animation: borderBottom 3s linear infinite;
         }
 
+                /* Container: mantém posicionamento, sem overflow escondido */
+        .term-border {
+        position: relative;
+        overflow: visible; /* permite que a linha fique visível junto ao border-radius */
+        }
+
+        /* Linha estática no topo (espessura: 2px). 
+        Use #dc2626 (red-600) para ficar similar ao warning-red; troque por var(--warning-red) se preferir. */
+        .term-border::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;                /* espessura da linha (ajuste para 1px se quiser mais fino) */
+        background: #dc2626;        /* cor da linha */
+        border-top-left-radius: 0.5rem;  /* corresponde ao rounded-lg do Tailwind */
+        border-top-right-radius: 0.5rem;
+        pointer-events: none;
+        }
+
+        /* Garantir que a pseudo-element inferior (se existir) não apareça */
+        .term-border::after {
+        display: none !important;
+        }
+
         /* Keyframes para animação da borda superior */
         @keyframes borderTop {
             0% {
@@ -209,12 +235,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-28">
             <div class="text-center">
                 <a href="#hero"
-                    class="text-4xl md:text-7xl font-bold font-['Share_Tech_Mono'] mb-4 hacker-text hover:text-hacker-green/80 transition"
-                    data-aos="fade-down">
+                    class="text-4xl md:text-7xl font-bold font-['Share_Tech_Mono'] mb-4 hacker-text hover:text-hacker-green/80 transition">
                     H2HC <span class="text-matrix-blue">2025</span>
                 </a>
-                <div class="typewriter max-w-3xl mx-auto text-xl md:text-2xl mb-8" data-aos="fade-up"
-                    data-aos-delay="300">
+                <div class="typewriter max-w-3xl mx-auto text-xl md:text-2xl mb-8">
                     A maior conferência HACKER da América Latina
                 </div>
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
@@ -229,8 +253,7 @@
                     </button>
                 </div>
             </div>
-            <div class="mt-32 grid grid-cols-1 md:grid-cols-3 gap-8 text-center" data-aos="fade-up"
-                data-aos-delay="500">
+            <div class="mt-32 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                 <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border">
                     <i data-feather="calendar" class="w-12 h-12 mx-auto text-hacker-green"></i>
                     <h3 class="text-xl font-bold mt-4">13-14 Dezembro</h3>
@@ -243,7 +266,7 @@
                 </div>
                 <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border">
                     <i data-feather="users" class="w-12 h-12 mx-auto text-warning-red"></i>
-                    <h3 class="text-xl font-bold mt-4">2000+ Participantes</h3>
+                    <h3 class="text-xl font-bold mt-4">Mais de 2.000 Participantes</h3>
                     <!-- <p class="mt-2 text-gray-400">Hackers</p> -->
                 </div>
             </div>
@@ -254,13 +277,13 @@
     <section id="about" class="py-20 bg-terminal-black/80 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold font-['Share_Tech_Mono'] hacker-text" data-aos="fade-down">
+                <h2 class="text-3xl md:text-5xl font-bold font-['Share_Tech_Mono'] hacker-text">
                     Sobre
                 </h2>
                 <div class="w-24 h-1 bg-hacker-green mx-auto mt-4"></div>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="relative" data-aos="fade-right">
+                <div class="relative">
                     <div class="terminal-border rounded-lg overflow-hidden">
                         <img src="http://static.photos/technology/1024x576/42" alt="H2HC Conference"
                             class="w-full h-auto">
@@ -271,7 +294,7 @@
                         <p class="text-sm">Edição</p>
                     </div>
                 </div>
-                <div data-aos="fade-left">
+                <div>
                     <p class="text-gray-300 mb-6">
                         A Hackers To Hackers Conference (H2HC) é a conferência de segurança mais antiga da América
                         Latina, criada inicialmente
@@ -296,7 +319,7 @@
     <section id="speakers" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold font-['Share_Tech_Mono'] hacker-text" data-aos="fade-down">
+                <h2 class="text-3xl md:text-5xl font-bold font-['Share_Tech_Mono'] hacker-text">
                     Palestrantes</h2>
                 <div class="w-24 h-1 bg-matrix-blue mx-auto mt-4"></div>
                 <p class="max-w-2xl mx-auto mt-6 text-gray-400">
@@ -308,8 +331,7 @@
             <!-- Main 3 Speakers -->
             <div id="main-speakers" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <!-- Speaker 1 -->
-                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden text-center"
-                    data-aos="zoom-in">
+                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden text-center">
                     <div class="p-6">
                         <img src="http://static.photos/technology/320x240/101" alt="Speaker"
                             class="w-32 h-32 rounded-full mx-auto border-4 border-hacker-green">
@@ -318,8 +340,7 @@
                     </div>
                 </div>
                 <!-- Speaker 2 -->
-                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden text-center"
-                    data-aos="zoom-in" data-aos-delay="100">
+                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden text-center">
                     <div class="p-6">
                         <img src="http://static.photos/technology/320x240/202" alt="Speaker"
                             class="w-32 h-32 rounded-full mx-auto border-4 border-matrix-blue">
@@ -328,8 +349,7 @@
                     </div>
                 </div>
                 <!-- Speaker 3 -->
-                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden text-center"
-                    data-aos="zoom-in" data-aos-delay="200">
+                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden text-center">
                     <div class="p-6">
                         <img src="http://static.photos/technology/320x240/303" alt="Speaker"
                             class="w-32 h-32 rounded-full mx-auto border-4 border-warning-red">
@@ -342,8 +362,7 @@
 
             <div id="all-speakers" class="hidden grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <!-- Speaker 4 -->
-                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden text-center"
-                    data-aos="zoom-in">
+                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden text-center">
                     <div class="p-6">
                         <img src="http://static.photos/technology/320x240/101" alt="Speaker"
                             class="w-32 h-32 rounded-full mx-auto border-4 border-hacker-green">
@@ -352,8 +371,7 @@
                     </div>
                 </div>
                 <!-- Speaker 5 -->
-                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden text-center"
-                    data-aos="zoom-in" data-aos-delay="100">
+                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden text-center">
                     <div class="p-6">
                         <img src="http://static.photos/technology/320x240/202" alt="Speaker"
                             class="w-32 h-32 rounded-full mx-auto border-4 border-matrix-blue">
@@ -362,8 +380,7 @@
                     </div>
                 </div>
                 <!-- Speaker 6 -->
-                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden text-center"
-                    data-aos="zoom-in" data-aos-delay="200">
+                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden text-center">
                     <div class="p-6">
                         <img src="http://static.photos/technology/320x240/303" alt="Speaker"
                             class="w-32 h-32 rounded-full mx-auto border-4 border-warning-red">
@@ -410,12 +427,12 @@
     <section id="schedule" class="py-20 bg-terminal-black/80 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold font-['Share_Tech_Mono'] hacker-text" data-aos="fade-down">
+                <h2 class="text-3xl md:text-5xl font-bold font-['Share_Tech_Mono'] hacker-text">
                     Agenda do
                     evento</h2>
                 <div class="w-24 h-1 bg-warning-red mx-auto mt-4"></div>
                 <p class="max-w-2xl mx-auto mt-6 text-gray-400">
-                    Dois dias de palestras técnicas, workshops e eventos de networking
+                    Dois dias de palestras técnicas, workshops e networking
                 </p>
             </div>
 
@@ -436,7 +453,7 @@
             <!-- Day 1 Schedule -->
             <div id="day1-schedule" class="space-y-4 max-w-6xl mx-auto">
                 <!-- 09:00 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border">
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">09:00 - 09:30</div>
@@ -450,7 +467,7 @@
                 </div>
 
                 <!-- 09:30 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up" data-aos-delay="50">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border">
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">09:30 - 10:30</div>
@@ -471,8 +488,8 @@
                 </div>
 
                 <!-- 10:30 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up"
-                    data-aos-delay="100">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border"
+                    >
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">10:30 - 11:00</div>
@@ -486,8 +503,8 @@
                 </div>
 
                 <!-- 11:00 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up"
-                    data-aos-delay="150">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border"
+                    >
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">11:00 - 12:00</div>
@@ -512,8 +529,8 @@
                 </div>
 
                 <!-- 12:00 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up"
-                    data-aos-delay="200">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border"
+                    >
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">12:00 - 13:30</div>
@@ -527,8 +544,8 @@
                 </div>
 
                 <!-- 13:30 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up"
-                    data-aos-delay="250">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border"
+                    >
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">13:30 - 14:30</div>
@@ -549,8 +566,8 @@
                 </div>
 
                 <!-- 14:30 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up"
-                    data-aos-delay="300">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border"
+                    >
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">14:30 - 16:00</div>
@@ -564,8 +581,8 @@
                 </div>
 
                 <!-- 16:00 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up"
-                    data-aos-delay="350">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border"
+                    >
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">16:00 - 17:00</div>
@@ -586,8 +603,8 @@
                 </div>
 
                 <!-- 17:00 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up"
-                    data-aos-delay="400">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border"
+                    >
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">17:00 - 18:00</div>
@@ -604,7 +621,7 @@
             <!-- Day 2 Schedule (Initially Hidden) -->
             <div id="day2-schedule" class="hidden space-y-4 max-w-6xl mx-auto">
                 <!-- 09:00 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border">
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">09:00 - 09:30</div>
@@ -618,7 +635,7 @@
                 </div>
 
                 <!-- 09:30 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up" data-aos-delay="50">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border">
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">09:30 - 10:30</div>
@@ -639,8 +656,8 @@
                 </div>
 
                 <!-- 10:30 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up"
-                    data-aos-delay="100">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border"
+                    >
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">10:30 - 12:00</div>
@@ -665,8 +682,8 @@
                 </div>
 
                 <!-- 12:00 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up"
-                    data-aos-delay="150">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border"
+                    >
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">12:00 - 13:30</div>
@@ -680,8 +697,8 @@
                 </div>
 
                 <!-- 13:30 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up"
-                    data-aos-delay="200">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border"
+                    >
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">13:30 - 14:30</div>
@@ -702,8 +719,8 @@
                 </div>
 
                 <!-- 14:30 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up"
-                    data-aos-delay="250">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border"
+                    >
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">14:30 - 15:30</div>
@@ -717,8 +734,8 @@
                 </div>
 
                 <!-- 15:30 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up"
-                    data-aos-delay="300">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border"
+                    >
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">15:30 - 16:30</div>
@@ -739,8 +756,8 @@
                 </div>
 
                 <!-- 16:30 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up"
-                    data-aos-delay="350">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border"
+                    >
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">16:30 - 17:30</div>
@@ -761,8 +778,8 @@
                 </div>
 
                 <!-- 17:30 -->
-                <div class="bg-terminal-black/70 p-6 rounded-lg terminal-border" data-aos="fade-up"
-                    data-aos-delay="400">
+                <div class="bg-terminal-black/70 p-6 rounded-lg term-border"
+                    >
                     <div class="flex flex-col md:flex-row md:items-center">
                         <div class="md:w-1/4 mb-4 md:mb-0">
                             <div class="text-hacker-green font-bold text-lg">17:30 - 19:00</div>
@@ -815,7 +832,7 @@
     <section id="sponsors" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold font-['Share_Tech_Mono'] hacker-text" data-aos="fade-down">
+                <h2 class="text-3xl md:text-5xl font-bold font-['Share_Tech_Mono'] hacker-text">
                     Patrocinadores</h2>
                 <div class="w-24 h-1 bg-hacker-green mx-auto mt-4"></div>
             </div>
@@ -823,160 +840,145 @@
             <!-- Gold Sponsors -->
             <div class="mb-16">
                 <div class="text-center mb-8">
-                    <h3 class="text-2xl font-bold text-yellow-400 mb-2" data-aos="fade-up">Nível Ouro</h3>
+                    <h3 class="text-2xl font-bold text-yellow-400 mb-2">Nível Ouro</h3>
                     <div class="w-16 h-0.5 bg-yellow-400 mx-auto"></div>
                 </div>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-center">
-                <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group"
-                    data-aos="zoom-in">
-                    <span class="text-lg font-bold text-yellow-400">CyberShield Elite</span>
-                    <div
-                        class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src="http://static.photos/technology/120x60/501" alt="CyberShield Logo"
-                            class="max-w-full max-h-full object-contain">
-                    </div>
-                </div>
-                <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group"
-                    data-aos="zoom-in" data-aos-delay="100">
-                    <span class="text-lg font-bold text-yellow-400">SecureMax Pro</span>
-                    <div
-                        class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src="http://static.photos/technology/120x60/502" alt="SecureMax Logo"
-                            class="max-w-full max-h-full object-contain">
-                    </div>
-                </div>
-                <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group"
-                    data-aos="zoom-in" data-aos-delay="200">
-                    <span class="text-lg font-bold text-yellow-400">DataGuard Premium</span>
-                    <div
-                        class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src="http://static.photos/technology/120x60/503" alt="DataGuard Logo"
-                            class="max-w-full max-h-full object-contain">
-                    </div>
-                </div>
-                <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group"
-                    data-aos="zoom-in" data-aos-delay="300">
-                    <span class="text-lg font-bold text-yellow-400">TechSecure Gold</span>
-                    <div
-                        class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src="http://static.photos/technology/120x60/504" alt="TechSecure Logo"
-                            class="max-w-full max-h-full object-contain">
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Silver Sponsors -->
-        <div class="mb-16">
-            <div class="text-center mb-8">
-                <h3 class="text-2xl font-bold text-gray-300 mb-2" data-aos="fade-up">Nível Prata</h3>
-                <div class="w-16 h-0.5 bg-gray-300 mx-auto"></div>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-center">
-                <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group"
-                    data-aos="zoom-in">
-                    <span class="text-lg font-bold text-gray-300">SecureBot</span>
-                    <div
-                        class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src="http://static.photos/technology/120x60/601" alt="SecureBot Logo"
-                            class="max-w-full max-h-full object-contain">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-center">
+                    <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group">
+                        <span class="text-lg font-bold text-yellow-400">CyberShield Elite</span>
+                        <div
+                            class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <img src="http://static.photos/technology/120x60/501" alt="CyberShield Logo"
+                                class="max-w-full max-h-full object-contain">
+                        </div>
                     </div>
-                </div>
-                <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group"
-                    data-aos="zoom-in" data-aos-delay="100">
-                    <span class="text-lg font-bold text-gray-300">CryptoNet</span>
-                    <div
-                        class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src="http://static.photos/technology/120x60/602" alt="CryptoNet Logo"
-                            class="max-w-full max-h-full object-contain">
+                    <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group">
+                        <span class="text-lg font-bold text-yellow-400">SecureMax Pro</span>
+                        <div
+                            class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <img src="http://static.photos/technology/120x60/502" alt="SecureMax Logo"
+                                class="max-w-full max-h-full object-contain">
+                        </div>
                     </div>
-                </div>
-                <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group"
-                    data-aos="zoom-in" data-aos-delay="200">
-                    <span class="text-lg font-bold text-gray-300">ByteDefender</span>
-                    <div
-                        class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src="http://static.photos/technology/120x60/603" alt="ByteDefender Logo"
-                            class="max-w-full max-h-full object-contain">
+                    <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group">
+                        <span class="text-lg font-bold text-yellow-400">DataGuard Premium</span>
+                        <div
+                            class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <img src="http://static.photos/technology/120x60/503" alt="DataGuard Logo"
+                                class="max-w-full max-h-full object-contain">
+                        </div>
                     </div>
-                </div>
-                <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group"
-                    data-aos="zoom-in" data-aos-delay="300">
-                    <span class="text-lg font-bold text-gray-300">NetShield</span>
-                    <div
-                        class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src="http://static.photos/technology/120x60/604" alt="NetShield Logo"
-                            class="max-w-full max-h-full object-contain">
+                    <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group">
+                        <span class="text-lg font-bold text-yellow-400">TechSecure Gold</span>
+                        <div
+                            class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <img src="http://static.photos/technology/120x60/504" alt="TechSecure Logo"
+                                class="max-w-full max-h-full object-contain">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Regular Sponsors -->
-        <div class="mb-16">
-            <div class="text-center mb-8">
-                <h3 class="text-2xl font-bold text-gray-200 mb-2" data-aos="fade-up">Outros</h3>
-                <div class="w-16 h-0.5 bg-gray-200 mx-auto"></div>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 items-center">
-                <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-center h-24 relative group"
-                    data-aos="zoom-in">
-                    <span class="text-sm font-bold text-gray-200">TechSec</span>
-                    <div
-                        class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src="http://static.photos/technology/100x50/701" alt="TechSec Logo"
-                            class="max-w-full max-h-full object-contain">
-                    </div>
+            <!-- Silver Sponsors -->
+            <div class="mb-16">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-gray-300 mb-2">Nível Prata</h3>
+                    <div class="w-16 h-0.5 bg-gray-300 mx-auto"></div>
                 </div>
-                <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-center h-24 relative group"
-                    data-aos="zoom-in" data-aos-delay="50">
-                    <span class="text-sm font-bold text-gray-200">InfoGuard</span>
-                    <div
-                        class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src="http://static.photos/technology/100x50/702" alt="InfoGuard Logo"
-                            class="max-w-full max-h-full object-contain">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 items-center">
+                    <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group">
+                        <span class="text-lg font-bold text-gray-300">SecureBot</span>
+                        <div
+                            class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <img src="http://static.photos/technology/120x60/601" alt="SecureBot Logo"
+                                class="max-w-full max-h-full object-contain">
+                        </div>
                     </div>
-                </div>
-                <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-center h-24 relative group"
-                    data-aos="zoom-in" data-aos-delay="100">
-                    <span class="text-sm font-bold text-gray-200">CyberTech</span>
-                    <div
-                        class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src="http://static.photos/technology/100x50/703" alt="CyberTech Logo"
-                            class="max-w-full max-h-full object-contain">
+                    <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group">
+                        <span class="text-lg font-bold text-gray-300">CryptoNet</span>
+                        <div
+                            class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <img src="http://static.photos/technology/120x60/602" alt="CryptoNet Logo"
+                                class="max-w-full max-h-full object-contain">
+                        </div>
                     </div>
-                </div>
-                <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-center h-24 relative group"
-                    data-aos="zoom-in" data-aos-delay="150">
-                    <span class="text-sm font-bold text-gray-200">SecureLab</span>
-                    <div
-                        class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src="http://static.photos/technology/100x50/704" alt="SecureLab Logo"
-                            class="max-w-full max-h-full object-contain">
+                    <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group">
+                        <span class="text-lg font-bold text-gray-300">ByteDefender</span>
+                        <div
+                            class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <img src="http://static.photos/technology/120x60/603" alt="ByteDefender Logo"
+                                class="max-w-full max-h-full object-contain">
+                        </div>
                     </div>
-                </div>
-                <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-center h-24 relative group"
-                    data-aos="zoom-in" data-aos-delay="200">
-                    <span class="text-sm font-bold text-gray-200">NetSecure</span>
-                    <div
-                        class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src="http://static.photos/technology/100x50/705" alt="NetSecure Logo"
-                            class="max-w-full max-h-full object-contain">
-                    </div>
-                </div>
-                <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-center h-24 relative group"
-                    data-aos="zoom-in" data-aos-delay="250">
-                    <span class="text-sm font-bold text-gray-200">DataShield</span>
-                    <div
-                        class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <img src="http://static.photos/technology/100x50/706" alt="DataShield Logo"
-                            class="max-w-full max-h-full object-contain">
+                    <div class="bg-gray-900 p-4 rounded-lg flex items-center justify-center h-28 relative group">
+                        <span class="text-lg font-bold text-gray-300">NetShield</span>
+                        <div
+                            class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <img src="http://static.photos/technology/120x60/604" alt="NetShield Logo"
+                                class="max-w-full max-h-full object-contain">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
+            <!-- Regular Sponsors -->
+            <div class="mb-16">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-gray-200 mb-2">Outros</h3>
+                    <div class="w-16 h-0.5 bg-gray-200 mx-auto"></div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 items-center">
+                    <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-center h-24 relative group">
+                        <span class="text-sm font-bold text-gray-200">TechSec</span>
+                        <div
+                            class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <img src="http://static.photos/technology/100x50/701" alt="TechSec Logo"
+                                class="max-w-full max-h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-center h-24 relative group">
+                        <span class="text-sm font-bold text-gray-200">InfoGuard</span>
+                        <div
+                            class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <img src="http://static.photos/technology/100x50/702" alt="InfoGuard Logo"
+                                class="max-w-full max-h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-center h-24 relative group">
+                        <span class="text-sm font-bold text-gray-200">CyberTech</span>
+                        <div
+                            class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <img src="http://static.photos/technology/100x50/703" alt="CyberTech Logo"
+                                class="max-w-full max-h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-center h-24 relative group">
+                        <span class="text-sm font-bold text-gray-200">SecureLab</span>
+                        <div
+                            class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <img src="http://static.photos/technology/100x50/704" alt="SecureLab Logo"
+                                class="max-w-full max-h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-center h-24 relative group">
+                        <span class="text-sm font-bold text-gray-200">NetSecure</span>
+                        <div
+                            class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <img src="http://static.photos/technology/100x50/705" alt="NetSecure Logo"
+                                class="max-w-full max-h-full object-contain">
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-3 rounded-lg flex items-center justify-center h-24 relative group">
+                        <span class="text-sm font-bold text-gray-200">DataShield</span>
+                        <div
+                            class="absolute inset-0 bg-gray-800 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <img src="http://static.photos/technology/100x50/706" alt="DataShield Logo"
+                                class="max-w-full max-h-full object-contain">
+                        </div>
+                    </div>
+                </div>
+            </div>
         <div class="text-center mt-16">
             <h3 class="text-xl font-bold text-matrix-blue mb-6">Patrocine</h3>
             <p class="max-w-2xl mx-auto text-gray-400 mb-8">
@@ -986,40 +988,38 @@
             </p>
             <button
                 class="bg-matrix-blue text-terminal-black px-6 py-3 rounded-md font-bold hover:bg-opacity-90 transition">
-                Download do kit de mídia
+                Download do mídia kit 
             </button>
         </div>
-        </div>
     </section>
+
 
     <!-- CTA Section -->
     <section id="tickets" class="py-20 bg-gradient-to-r from-terminal-black to-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold font-['Share_Tech_Mono'] hacker-text" data-aos="fade-down">
+                <h2 class="text-3xl md:text-5xl font-bold font-['Share_Tech_Mono'] hacker-text">
                     Compre seu
                     ingresso</h2>
                 <div class="w-24 h-1 bg-hacker-green mx-auto mt-4"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <!-- Ticket Tier 1 - Pesquisadores -->
-                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden terminal-border flex flex-col h-full"
-                    data-aos="zoom-in">
+                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden terminal-border flex flex-col h-full">
                     <div class="p-8 flex-1 flex flex-col">
-                        <h3 class="text-2xl font-bold text-center text-matrix-blue">Pesquisadores</h3>
+                        <h3 class="text-2xl font-bold text-center text-hacker-green">Pesquisadores</h3>
                         <div class="text-center my-6 flex-1">
                             <p class="text-gray-300 text-lg">Desconto para pesquisadores com CVE</p>
                         </div>
                         <button
-                            class="w-full bg-matrix-blue text-terminal-black py-3 rounded-md font-bold hover:bg-opacity-90 transition mt-auto"
+                            class="w-full bg-hacker-green text-terminal-black py-3 rounded-md font-bold hover:bg-opacity-90 transition mt-auto"
                             onclick="window.open('https://www.eventbrite.com.br/e/h2hc-hackers-2-hackers-conference-2024-21-anos-registration-928788179447', '_blank')">
                             Comprar Ingresso
                         </button>
                     </div>
                 </div>
                 <!-- Ticket Tier 2 - Normal (Highlighted) -->
-                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden border-2 border-hacker-green shadow-lg shadow-hacker-green/30 flex flex-col h-full relative"
-                    data-aos="zoom-in" data-aos-delay="150">
+                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden border-2 border-hacker-green shadow-lg shadow-hacker-green/30 flex flex-col h-full relative">
                     <div class="p-8 flex-1 flex flex-col">
                         <div
                             class="absolute top-0 right-0 bg-hacker-green text-terminal-black px-4 py-1 text-sm font-bold rounded-bl-lg">
@@ -1037,17 +1037,16 @@
                     </div>
                 </div>
                 <!-- Ticket Tier 3 - Digital Influencer -->
-                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden terminal-border flex flex-col h-full"
-                    data-aos="zoom-in" data-aos-delay="300">
+                <div class="bg-terminal-black/80 backdrop-blur-sm rounded-xl overflow-hidden terminal-border flex flex-col h-full">
                     <div class="p-8 flex-1 flex flex-col">
-                        <h3 class="text-2xl font-bold text-center text-warning-red">Influencer</h3>
+                        <h3 class="text-2xl font-bold text-center text-hacker-green">Influencer</h3>
                         <div class="text-center my-6 flex-1">
                             <p class="text-gray-300 text-lg">Para influenciadores digitais</p>
                         </div>
                         <button
-                            class="w-full bg-gray-700 text-gray-300 py-3 rounded-md font-bold cursor-not-allowed mt-auto"
-                            onclick="alert('Não vendemos ingressos mais baratos para digitais influencers.')">
-                            Não Disponível
+                            class="w-full bg-hacker-green text-terminal-black py-3 rounded-md font-bold hover:bg-opacity-90 transition mt-auto"
+                            onclick="window.open('https://www.mindthesec.com.br/inscreva-se', '_blank')">
+                            Comprar Ingresso
                         </button>
                     </div>
                 </div>
